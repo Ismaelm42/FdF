@@ -1,34 +1,48 @@
 NAME = fdf
 
+ifeq ($(shell uname), Darwin)
+	CFLAGS = -Wall -Werror -Wextra -DEBUG=1 -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+else
+	CFLAGS = -Wall -Werror -ldl -Wextra -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
+endif
+
 SRC = check_map.c
 
 OBJT = $(SRC:.c=.o)
 
-LIBFT = ./libft/Libft.a
+LIBFT_DIR = ./libft
 
-RM = rm -f
+LIBFT = $(LIBFT_DIR)/libft.a
+
+MLX42_DIR = ./MLX42
+
+MLX42 = $(MLX42_DIR)/libmlx42.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
 
 MAKEFLAGS += --quiet
 
-all: $(NAME)
+all: $(LIBFT) $(MLX42) $(NAME)
 
-$(NAME): $(LIBFT) $(OBJT)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJT)
+		$(CC) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(CFLAGS)
 
 $(LIBFT):
-		make -C ./libft
-		ranlib $(LIBFT)
+		make -C $(LIBFT_DIR)
+
+$(MLX42):
+		make -C $(MLX42_DIR)
 
 clean:
-		make clean -C ./libft
-		$(RM) $(OBJT)
+		make clean -C $(LIBFT_DIR)
+		make clean -C $(MLX42_DIR)
+		$(RM) $(OBJ)
 
 fclean: clean
-		make clean -C ./libft
+		make fclean -C $(LIBFT_DIR)
+		make clean -C $(MLX42_DIR)
 		$(RM) $(NAME)
 
 re: fclean all
