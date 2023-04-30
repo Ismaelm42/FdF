@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*get_next_line(int fd)
 {
@@ -37,7 +37,7 @@ char	*ft_read(int fd, char *static_buffer)
 	bytes_read = 1;
 	while (bytes_read > 0 && !(ft_strchr_gnl(static_buffer, 10)))
 	{
-		buffer = ft_malloc_gnl(BUFFER_SIZE + 1);
+		buffer = ft_malloc(BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 			return (free(buffer), free(static_buffer), NULL);
@@ -93,8 +93,8 @@ char	*ft_memcpy_gnl(char *src)
 	long int	n;
 
 	i = 0;
-	n = ft_strlen_gnl(src);
-	return_buffer = ft_malloc_gnl(n + 1);
+	n = ft_strlen(src);
+	return_buffer = ft_malloc(n + 1);
 	if (src == 0)
 		return (NULL);
 	while (i < n)

@@ -12,10 +12,16 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
+# include <fcntl.h>
+# include <stdarg.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <string.h>
 # include <unistd.h>
-# include <stdlib.h>
 
 typedef struct s_list
 {
@@ -66,5 +72,26 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+
+int		ft_printf(char const *str, ...);
+int		ft_call(void *arg, char const *print_str);
+int		ft_char(void *arg);
+int		ft_string(void *arg);
+int		ft_pointer(void *arg);
+int		ft_decimal(void *arg);
+int		ft_integer(void *arg);
+int		ft_unsigned(void *arg);
+int		ft_lower_case_hex(void *arg);
+int		ft_cap_hex(void *arg);
+
+char	*get_next_line(int fd);
+char	*ft_read(int fd, char *static_buffer);
+char	*ft_return_line(char *static_buffer);
+char	*ft_return_static_buffer(char *static_buffer);
+char	*ft_malloc(size_t nmemb);
+char	*ft_strchr_gnl(const char *s, int c);
+char	*ft_strjoin_gnl(char *s1, char *s2, long int bytes_read);
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len);
+char	*ft_memcpy_gnl(char *src);
 
 #endif
