@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_gnl(const char *s)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_malloc(size_t nmemb)
+char	*ft_malloc_gnl(size_t nmemb)
 {
 	size_t	i;
 	char	*str;
@@ -41,7 +41,7 @@ char	*ft_malloc(size_t nmemb)
 	return (str);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2, long int bytes_read)
+char	*ft_strjoin_gnl(char *s1, char *s2, long int bytes_read)
 {
 	char	*str;
 	size_t	i;
@@ -69,10 +69,10 @@ char	*ft_strjoin(char *s1, char *s2, long int bytes_read)
 		return (free(s2), s1);
 	if (!s1)
 	{
-		str = ft_memcpy(s2);
+		str = ft_memcpy_gnl(s2);
 		return (free(s2), str);
 	}
-	str = ft_malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	str = ft_malloc_gnl(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
 	i = 0;
 	j = 0;
 	while (s1[i] != '\0')
@@ -88,7 +88,7 @@ char	*ft_strjoin(char *s1, char *s2, long int bytes_read)
 	return (free(s1), free(s2), str);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
 {
 	size_t		i;
 	size_t		j;
@@ -98,8 +98,8 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	str_start = (size_t)start;
 	i = (size_t)str_start;
 	j = 0;
-	if (len > (size_t)ft_strlen(s) - str_start)
-		len = (size_t)ft_strlen(s) - str_start;
+	if (len > (size_t)ft_strlen_gnl(s) - str_start)
+		len = (size_t)ft_strlen_gnl(s) - str_start;
 	if (!s)
 		return (NULL);
 	str = malloc(sizeof (char) * (len + 1));

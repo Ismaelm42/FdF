@@ -32,16 +32,16 @@ char	*ft_read(int fd, char *static_buffer)
 	char		*buffer;
 	long int	bytes_read;
 
-	if (static_buffer && ft_strchr(static_buffer, 10))
+	if (static_buffer && ft_strchr_gnl(static_buffer, 10))
 		return (static_buffer);
 	bytes_read = 1;
-	while (bytes_read > 0 && !(ft_strchr(static_buffer, 10)))
+	while (bytes_read > 0 && !(ft_strchr_gnl(static_buffer, 10)))
 	{
-		buffer = ft_malloc(BUFFER_SIZE + 1);
+		buffer = ft_malloc_gnl(BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 			return (free(buffer), free(static_buffer), NULL);
-		static_buffer = ft_strjoin(static_buffer, buffer, bytes_read);
+		static_buffer = ft_strjoin_gnl(static_buffer, buffer, bytes_read);
 	}
 	return (static_buffer);
 }
@@ -51,13 +51,13 @@ char	*ft_return_line(char *static_buffer)
 	char	*buffer;
 	int		length;
 
-	if (static_buffer && ft_strchr(static_buffer, 10))
+	if (static_buffer && ft_strchr_gnl(static_buffer, 10))
 	{
 		length = 0;
 		while (static_buffer[length] != 10)
 			length++;
 		length++;
-		buffer = ft_substr(static_buffer, 0, length);
+		buffer = ft_substr_gnl(static_buffer, 0, length);
 		return (buffer);
 	}
 	return (static_buffer);
@@ -69,7 +69,7 @@ char	*ft_return_static_buffer(char *static_buffer)
 	int		n;
 	int		length;
 
-	if (static_buffer && ft_strchr(static_buffer, 10))
+	if (static_buffer && ft_strchr_gnl(static_buffer, 10))
 	{
 		n = 0;
 		while (static_buffer[n] != 10)
@@ -80,21 +80,21 @@ char	*ft_return_static_buffer(char *static_buffer)
 			length++;
 		if (length == 0)
 			return (free (static_buffer), NULL);
-		buffer = ft_substr(static_buffer, n, length);
+		buffer = ft_substr_gnl(static_buffer, n, length);
 		return (free (static_buffer), buffer);
 	}
 	return (NULL);
 }
 
-char	*ft_memcpy(char *src)
+char	*ft_memcpy_gnl(char *src)
 {
 	char		*return_buffer;
 	long int	i;
 	long int	n;
 
 	i = 0;
-	n = ft_strlen(src);
-	return_buffer = ft_malloc(n + 1);
+	n = ft_strlen_gnl(src);
+	return_buffer = ft_malloc_gnl(n + 1);
 	if (src == 0)
 		return (NULL);
 	while (i < n)

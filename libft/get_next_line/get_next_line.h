@@ -27,11 +27,11 @@ char		*ft_read(int fd, char *static_buffer);
 char		*ft_return_line(char *static_buffer);
 char		*ft_return_static_buffer(char *static_buffer);
 
-size_t		ft_strlen(const char *s);
-char		*ft_malloc(size_t nmemb);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strjoin(char *s1, char *s2, long int bytes_read);
-char		*ft_substr(char *s, unsigned int start, size_t len);
-char		*ft_memcpy(char *src);
+size_t		ft_strlen_gnl(const char *s);
+char		*ft_malloc_gnl(size_t nmemb);
+char		*ft_strchr_gnl(const char *s, int c);
+char		*ft_strjoin_gnl(char *s1, char *s2, long int bytes_read);
+char		*ft_substr_gnl(char *s, unsigned int start, size_t len);
+char		*ft_memcpy_gnl(char *src);
 
 #endif
