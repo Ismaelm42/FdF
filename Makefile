@@ -6,7 +6,7 @@ else
 	CFLAGS = -Wall -Werror -ldl -Wextra -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
 endif
 
-SRC = check_map.c
+SRC = main.c
 
 OBJT = $(SRC:.c=.o)
 
