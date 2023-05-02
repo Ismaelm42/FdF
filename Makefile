@@ -6,7 +6,9 @@ else
 	CFLAGS = -Wall -Werror -ldl -Wextra -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
 endif
 
-SRC = main.c
+SRC =	main.c				\
+		fdf_parse_map.c		\
+		fdf_utils.c			\
 
 OBJT = $(SRC:.c=.o)
 
@@ -38,7 +40,7 @@ $(MLX42):
 clean:
 		make clean -C $(LIBFT_DIR)
 		make clean -C $(MLX42_DIR)
-		$(RM) $(OBJ)
+		$(RM) $(OBJT)
 
 fclean: clean
 		make fclean -C $(LIBFT_DIR)
@@ -46,5 +48,6 @@ fclean: clean
 		$(RM) $(NAME)
 
 re: fclean all
+	$(MAKE) clean
 
 .PHONY: all clean fclean re
