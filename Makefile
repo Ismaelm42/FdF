@@ -7,7 +7,7 @@ else
 endif
 
 SRC =	main.c				\
-		fdf_parse_map.c		\
+		fdf_map_init.c		\
 		fdf_utils.c			\
 
 OBJT = $(SRC:.c=.o)
