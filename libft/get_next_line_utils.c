@@ -29,7 +29,7 @@ char	*ft_malloc(size_t nmemb)
 	return (str);
 }
 
-char	*ft_strchr_gnl(const char *s, int c)
+char	*ft_strchr_gnl(char *s, int c)
 {
 	int	i;
 

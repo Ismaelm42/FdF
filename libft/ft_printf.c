@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_char_counter(char const *str)
+static int	ft_char_counter(char *str)
 {
 	write(1, str, 1);
 	return (1);
@@ -39,7 +39,7 @@ static int	ft_length(char const *str, va_list arg, int length)
 	return (length);
 }
 
-int	ft_printf(char const *str, ...)
+int	ft_printf(char *str, ...)
 {
 	int		length;
 	va_list	arg;

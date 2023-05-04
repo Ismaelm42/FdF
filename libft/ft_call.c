@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_call(void *arg, char const *print_str)
+int	ft_call(void *arg, char *print_str)
 {
 	if (*print_str == 'c')
 		return (ft_char(arg));
