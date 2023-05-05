@@ -1,7 +1,8 @@
 NAME = fdf
 
 ifeq ($(shell uname), Darwin)
-	CFLAGS = -Wall -Werror -Wextra -DEBUG=1 -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	CFLAGS = -Wall -Werror -Wextra
+	INCCFLAGS =  -DEBUG=1 -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 else
 	CFLAGS = -Wall -Werror -ldl -Wextra -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
 endif
@@ -29,7 +30,7 @@ MAKEFLAGS += --quiet
 all: $(LIBFT) $(MLX42) $(NAME)
 
 $(NAME): $(OBJT)
-		$(CC) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(CFLAGS)
+		$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(INCCFLAGS)
 
 $(LIBFT):
 		make -C $(LIBFT_DIR)
