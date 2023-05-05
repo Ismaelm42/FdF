@@ -1,0 +1,45 @@
+NAME			=	fdf
+CC				=	gcc
+CFLAGS			=	-Wall -Werror -Wextra
+RM				=	rm -f
+SRCS			=	main.c \
+					fdf_map_init.c \
+					fdf_utils.c \
+
+OBJS			=	$(SRCS:.c=.o)
+INC_LFT = -Ilibft
+LIBFT = libft/libft.a
+MLX_DIR = MLX42
+LIBMLX.A = libmlx42.a
+LIBMLX = $(MLX_DIR)/libmlx42.a -ldl -lglfw -pthread -lm
+INC_MLX = -I$(MLX_DIR)/include/MLX42 -Iinclude -lglfw -L"/Users/$$USER/.brew/opt/glfw/lib/"
+INC = -Iinclude $(INC_LFT) $(INC_MLX)
+MAKEFLAGS += --quiet
+
+%.o: %.c
+				$(CC) $(CFLAGS) -c $< -o $@
+
+all:			$(LIBFT) $(LIBMLX.A) $(NAME)
+
+$(LIBFT):
+				$(MAKE) -C ./libft
+
+$(LIBMLX.A):
+				$(MAKE) -C ./MLX42
+
+$(NAME):		$(OBJS)
+				$(CC) $(FLAGS) $(INC) $(LIBMLX) $(LIBFT) $(OBJS) -o $(NAME)
+
+clean:
+				$(RM) $(OBJS)
+				$(MAKE) clean -C ./libft
+				$(MAKE) clean -C ./MLX42
+
+fclean:			clean
+				$(RM) $(NAME)
+				$(MAKE) fclean -C ./libft
+				$(MAKE) fclean -C ./MLX42
+
+re:				fclean all
+
+.PHONY:			all clean fclean re
