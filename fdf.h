@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 13:46:34 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/05 13:46:37 by imoro-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -12,9 +24,9 @@ typedef struct s_point
 	int			x;
 	int			y;
 	int			z;
-	int		r;
-	int		g;
-	int		b;
+	int			r;
+	int			g;
+	int			b;
 }				t_point;
 
 typedef struct s_map
@@ -31,7 +43,7 @@ typedef struct s_fdf
 }				t_fdf;
 
 //init_map
-t_map		map_size(char *argv, t_map map);
+t_map		*map_size(char *argv);
 t_point		**matrix_init(t_map *map);
 t_point		**coordinates_xy(t_map *map, t_point **points);
 t_point		**get_altitude_and_rgb(char *argv, t_map *map, t_point **points);

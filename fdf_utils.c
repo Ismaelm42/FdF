@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 13:46:42 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/05 13:47:19 by imoro-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "fdf.h"
 
 void	error(char *err)
@@ -35,8 +47,8 @@ int	hex_to_decimal(char *buffer, int channel)
 {
 	char	base_low[] = "0123456789abcdef";
 	char	base_upper[] = "0123456789ABCDEF";
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;

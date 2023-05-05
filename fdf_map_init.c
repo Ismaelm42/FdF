@@ -1,13 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_map_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 13:47:24 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/05 13:47:27 by imoro-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "fdf.h"
 
-t_map	map_size(char *argv, t_map map)
+t_map	*map_size(char *argv)
 {
+	t_map	*map;
 	int		fd;
 	int		width;
 	int		height;
 	char	*buffer;
 
 	fd = open(argv, O_RDONLY);
+	map = malloc(sizeof(t_map));
 	if (fd == -1)
 		error(ERR_OPEN);
 	height = 0;
@@ -24,8 +38,8 @@ t_map	map_size(char *argv, t_map map)
 			error(ERR_MAP_SIZE);
 		height++;
 	}
-	map.height = height;
-	map.width = width;
+	map->height = height;
+	map->width = width;
 	return (close(fd), map);
 }
 
@@ -95,6 +109,7 @@ t_point	**get_altitude_and_rgb(char *argv, t_map *map, t_point **points)
 	free(buffer);
 	return (close(fd), points);
 }
+
 int	get_altitude(char *buffer)
 {
 	int		len;
@@ -116,15 +131,14 @@ void	get_rgb(t_point *points, char *buffer)
 	else
 	{
 		buffer = ft_strnstr(buffer, "0x", ft_strlen(buffer));
-		if(ft_strlen(buffer) >= 4)
+		if (ft_strlen(buffer) >= 4)
 			points->r = hex_to_decimal(buffer, 2);
-		if(ft_strlen(buffer) >= 6)
+		if (ft_strlen(buffer) >= 6)
 			points->g = hex_to_decimal(buffer, 4);
-		if(ft_strlen(buffer) == 8)
+		if (ft_strlen(buffer) == 8)
 			points->b = hex_to_decimal(buffer, 6);
 		printf("points->r = %d\n", points->r);
 		printf("points->g = %d\n", points->g);
 		printf("points->b = %d\n", points->b);
-
 	}
 }
