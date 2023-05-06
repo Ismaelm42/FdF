@@ -21,9 +21,7 @@ int	main(int argc, char **argv)
 		return (0);
 	map = map_size(argv[1]);
 	points = matrix_init(map);
-	points = coordinates_xy(map, points);
-	points = get_altitude_and_rgb(argv[1], map, points);
-	printf("map.w = %d\nmap.h = %d\n", map->width, map->height);
-	printf("x = %d\ny = %d\n", points[9][9].x, points[9][9].y);
+	coordinates_xy(map, points);
+	get_altitude_and_rgb(argv[1], map, points);
 	return (0);
 }
