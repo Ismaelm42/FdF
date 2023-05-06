@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_string_counter(char *s, char c)
+int	ft_str_counter(char *s, char c)
 {
 	int	i;
 	int	count;
@@ -70,10 +70,10 @@ char	**ft_split(char *s, char c)
 
 	start = 0;
 	n = 0;
-	str = malloc(sizeof(char **) * (ft_string_counter(s, c) + 1));
+	str = malloc(sizeof(char **) * (ft_str_counter(s, c) + 1));
 	if (str == NULL)
 		return (NULL);
-	while (n < ft_string_counter(s, c))
+	while (n < ft_str_counter(s, c))
 	{
 		start = ft_string_start(s, c, start);
 		str[n] = ft_substr(s, start, (size_t)ft_string_len(s, c, start));
