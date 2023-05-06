@@ -1,14 +1,14 @@
 NAME = fdf
 
 ifeq ($(shell uname), Darwin)
-	CFLAGS = -Wall -Werror -Wextra
-	INCCFLAGS =  -DEBUG=1 -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+	INCFLAGS =  -DEBUG=1 -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 else
-	CFLAGS = -Wall -Werror -ldl -Wextra -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
+	INCFLAGS = -ldl -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
 endif
 
 SRC =	main.c				\
-		fdf_map_init.c		\
+		fdf_struct_init.c	\
+		fdf_struct_utils.c	\
 		fdf_utils.c			\
 
 OBJT = $(SRC:.c=.o)
@@ -25,27 +25,29 @@ CC = gcc
 
 RM = rm -f
 
+CFLAGS = -Wall -Werror -Wextra
+
 MAKEFLAGS += --quiet
 
 all: $(LIBFT) $(MLX42) $(NAME)
 
 $(NAME): $(OBJT)
-		$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(INCCFLAGS)
+		$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(INCFLAGS)
 
 $(LIBFT):
-		make -C $(LIBFT_DIR)
+		$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX42):
-		make -C $(MLX42_DIR)
+		$(MAKE) -C $(MLX42_DIR)
 
 clean:
-		make clean -C $(LIBFT_DIR)
-		make clean -C $(MLX42_DIR)
+		$(MAKE) clean -C $(LIBFT_DIR)
+		$(MAKE) clean -C $(MLX42_DIR)
 		$(RM) $(OBJT)
 
 fclean: clean
-		make fclean -C $(LIBFT_DIR)
-		make clean -C $(MLX42_DIR)
+		$(MAKE) fclean -C $(LIBFT_DIR)
+		$(MAKE) clean -C $(MLX42_DIR)
 		$(RM) $(NAME)
 
 re: fclean all
