@@ -78,4 +78,17 @@ void	draw(t_fdf *fdf)
 		}
 		y++;
 	}
+	y = 0;
+	x = 0;
+	while (x < (fdf->map->width))
+	{
+		y = 0;
+		while (y < (fdf->map->height - 1))
+		{
+			next = &fdf->map->points[y + 1][x];
+			bresenham(&fdf->map->points[y][x], next, fdf);
+			y++;
+		}
+		x++;
+	}
 }
