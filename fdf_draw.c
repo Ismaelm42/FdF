@@ -1,6 +1,6 @@
 # include "fdf.h"
 
-t_fdf	*struct_init(t_map *map)
+t_fdf	*map_init(t_map *map)
 {
 	t_fdf	*fdf;
 
@@ -61,7 +61,13 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 
 void	draw(t_fdf *fdf)
 {
-	t_point	*next;
+	draw_x(fdf);
+	draw_y(fdf);
+}
+
+void	draw_y(t_fdf *fdf)
+{
+	t_point	*point;
 	int		y;
 	int		x;
 
@@ -72,21 +78,28 @@ void	draw(t_fdf *fdf)
 		x = 0;
 		while (x < (fdf->map->width - 1))
 		{
-			next = &fdf->map->points[y][x + 1];
-			bresenham(&fdf->map->points[y][x], next, fdf);
+			point = &fdf->map->points[y][x + 1];
+			bresenham(&fdf->map->points[y][x], point, fdf);
 			x++;
 		}
 		y++;
 	}
-	y = 0;
+}
+void	draw_x(t_fdf *fdf)
+{
+	t_point	*point;
+	int		x;
+	int		y;
+
 	x = 0;
+	y = 0;
 	while (x < (fdf->map->width))
 	{
 		y = 0;
 		while (y < (fdf->map->height - 1))
 		{
-			next = &fdf->map->points[y + 1][x];
-			bresenham(&fdf->map->points[y][x], next, fdf);
+			point = &fdf->map->points[y + 1][x];
+			bresenham(&fdf->map->points[y][x], point, fdf);
 			y++;
 		}
 		x++;
