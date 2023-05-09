@@ -38,9 +38,11 @@ int	main(int argc, char **argv)
 
 	//zoom
 	zoom(fdf);
+	printf("width = %d\n", fdf->map->width);
+	printf("height = %d\n", fdf->map->height);
 
 	//draw
-	//draw(fdf);
+	draw(fdf);
 
 	//bresenham_test
 	// t_point *a;
