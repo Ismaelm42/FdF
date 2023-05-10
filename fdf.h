@@ -93,7 +93,9 @@ void		draw(t_fdf *fdf);
 //draw_utils
 void		draw_x(t_fdf *fdf);
 void		draw_y(t_fdf *fdf);
-void		put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf);
+void		draw_y0(t_fdf *fdf);
+void		draw_while(t_fdf *fdf);
+void	put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf);
 
 //view
 void		focus(t_fdf *fdf);
@@ -220,45 +222,17 @@ void		printing_matrix(t_fdf *fdf);
 
 
 
-// void	original_bresenham(int x0, int y0, int x1, int y1, t_fdf *fdf)
-// {
-// 	int		dx;
-// 	int		dy;
-// 	int		inc_x;
-// 	int		inc_y;
-// 	int		p;
+//PROYECTO:
 
-// 	fdf = (void *)fdf;
-// 	dx = abs_n(x1 - x0);
-// 	dy = abs_n(y1 - y0);
-// 	inc_x = 1;
-// 	if ((x1 - x0) <= 0)
-// 		inc_x = -1;
-// 	inc_y = 1;
-// 	if ((y1 - y0) <= 0)
-// 		inc_y = -1;
-// 	p = (2 * dy) - dx;
-// 	while ((x0 <= x1) || (y0 <= y1))
-// 	{
-// 		mlx_put_pixel (fdf->mlx_image, x0, y0, 0xFFFFFF);
-// 		if (p < 0)
-// 			p = p + 2 * dy;
-// 		else
-// 		{
-// 			y0 = y0 + inc_y;
-// 			p = p + (2 * dy) - (2 * dx);
-// 		}
-//		x0 = x0 + inc_x;
-// 		printf("x0 = %d\n", x0);
-// 		printf("y0 = %d\n", y0);
-// 		printf("x1 = %d\n", x1);
-// 		printf("y1 = %d\n", y1);
-// 		printf("\n");
-// 	}
-// }
+//coorregir fallo, no pinta la primera línea
+//algoritmo de bresenham fucked en principio.
+//se mueve en ángulo recto cuando la coordenadas son de diagonales.
+//centrar el mapa y ponerlo a escala
 
-//faltaria centrar aun
+//implementar 3D
 //resolver la z, investigar en cuanto al zoom, radians, vistas, etc.
 
-//proyeccion rara de cojones con las coordenadas correctas
-//puede ser de la función put_pixel?
+
+//CRASHEOS:
+//comprobar si hay letras en el mapa y tal le da igual, sigue
+//si hay , y luego no hay 0x crashea

@@ -7,7 +7,6 @@ void	draw_y(t_fdf *fdf)
 	int		x;
 
 	y = 0;
-	x = 0;
 	while (y < (fdf->map->height))
 	{
 		x = 0;
@@ -28,7 +27,6 @@ void	draw_x(t_fdf *fdf)
 	int		y;
 
 	x = 0;
-	y = 0;
 	while (x < (fdf->map->width))
 	{
 		y = 0;
@@ -42,12 +40,48 @@ void	draw_x(t_fdf *fdf)
 	}
 }
 
+void	draw_y0(t_fdf *fdf)
+{
+	t_point	*point;
+	int		y;
+	int		x;
+
+	y = 0;
+	x = 0;
+	while (x < (fdf->map->width - 1))
+	{
+		point = &fdf->map->points[y][x + 1];
+		bresenham(&fdf->map->points[y][x], point, fdf);
+		x++;
+	}
+}
+void	draw_while(t_fdf *fdf)
+{
+	int		y;
+	int		x;
+
+	y = 0;
+	while (y < fdf->map->height)
+	{
+		x = 0;
+		while (x < fdf->map->width)
+		{
+			if (x < fdf->map->width - 1)
+				bresenham(&fdf->map->points[y][x], &fdf->map->points[y][x + 1], fdf);
+			if (y < fdf->map->height - 1)
+				bresenham(&fdf->map->points[y][x], &fdf->map->points[y + 1][x], fdf);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf)
 {
-	fdf->mlx_image->pixels[pixel] = 255;
-	fdf->mlx_image->pixels[pixel + 1] = 255;
-	fdf->mlx_image->pixels[pixel + 2] = 255;
-	fdf->mlx_image->pixels[pixel + 3] = 120;
+	fdf->mlx_image->pixels[pixel] = a->r;
+	fdf->mlx_image->pixels[pixel + 1] = a->g;
+	fdf->mlx_image->pixels[pixel + 2] = a->b;
+	fdf->mlx_image->pixels[pixel + 3] = a->a;
 	if (a->y == 0 && b->y == 0)
 	{
 		printf("a->x = %d\t| a->y = %d\n", a->x, a->y);

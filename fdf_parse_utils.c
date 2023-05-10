@@ -75,6 +75,7 @@ void	get_rgb(t_point *point, char *buffer)
 		point->r = 19;
 		point->g = 205;
 		point->b = 231;
+		point->a = 255;
 	}
 	else
 	{
@@ -85,5 +86,9 @@ void	get_rgb(t_point *point, char *buffer)
 			point->g = hex_to_decimal(buffer, 4);
 		if (ft_strlen(buffer) == 8)
 			point->b = hex_to_decimal(buffer, 6);
+		if (ft_strlen(buffer) == 10)
+			point->a = hex_to_decimal(buffer, 8);
+		else
+			point->a = 255;
 	}
 }

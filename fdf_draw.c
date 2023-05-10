@@ -42,13 +42,6 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 	t_coord	*coord;
 	int		pixel;
 
-	// if (a->y == 0 && b->y == 0)
-	// {
-	// 	printf("a->x = %d | a->y = %d\n", a->x, a->y);
-	// 	printf("a->sx = %d | a->sy = %d\n", a->sx, a->sy);
-	// 	printf("b->x = %d | b->y = %d\n", b->x, b->y);
-	// 	printf("b->sx = %d | b->sy = %d\n\n", b->sx, b->sy);
-	// }
 	coord = coord_init(a, b);
 	while (1)
 	{
@@ -73,6 +66,5 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 
 void	draw(t_fdf *fdf)
 {
-	draw_x(fdf);
-	draw_y(fdf);
+	draw_while(fdf);
 }

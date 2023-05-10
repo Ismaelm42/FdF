@@ -5,9 +5,9 @@ void	focus(t_fdf *fdf)
 	int	x;
 	int	y;
 
-	fdf->zoom = (WIDTH / fdf->map->width) / 2;
+	fdf->zoom = 40;//(WIDTH / fdf->map->width) / 2;
 	fdf->focus_x = (WIDTH / fdf->map->width);
-	fdf->focus_y = 50;//(HEIGHT / fdf->map->height);
+	fdf->focus_y = 200;//(HEIGHT / fdf->map->height);
 	y = 0;
 	x = 0;
 	while (y < fdf->map->height)
