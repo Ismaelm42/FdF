@@ -21,8 +21,8 @@
 # define ERR_MAP_SIZE "Map size is not valid\n"
 # define ERR_MEM "Memory allocation failed\n"
 # define ERR_MLX "Error opening MLX\n"
-# define WIDTH 1000
-# define HEIGTH 1000
+# define WIDTH 1200
+# define HEIGHT 900
 
 typedef struct s_point
 {
@@ -61,7 +61,11 @@ typedef struct s_fdf
 	t_map			*map;
 	mlx_t			*mlx;
 	mlx_image_t		*mlx_image;
+	int				w_width;
+	int				w_heigth;
 	int				zoom;
+	int				focus_x;
+	int				focus_y;
 }					t_fdf;
 
 
@@ -80,14 +84,20 @@ void		get_rgb(t_point *point, char *buffer);
 
 
 //drawing
-t_fdf		*struct_init(t_map *map);
+t_fdf		*map_init(t_map *map);
 t_coord		*coord_init(t_point *a, t_point *b);
 void		bresenham(t_point *a, t_point *b, t_fdf *fdf);
 void		draw(t_fdf *fdf);
 
 
+//draw_utils
+void		draw_x(t_fdf *fdf);
+void		draw_y(t_fdf *fdf);
+void		put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf);
+
 //view
-void		zoom(t_fdf *fdf);
+void		focus(t_fdf *fdf);
+
 
 //utils
 void		ft_leaks(void);
@@ -247,7 +257,8 @@ void		printing_matrix(t_fdf *fdf);
 // 	}
 // }
 
-
-
-//distancia entre puntos x0y0 x1y1
+//faltaria centrar aun
 //resolver la z, investigar en cuanto al zoom, radians, vistas, etc.
+
+//proyeccion rara de cojones con las coordenadas correctas
+//puede ser de la función put_pixel?

@@ -7,8 +7,11 @@ else
 endif
 
 SRC =	main.c				\
-		fdf_struct_init.c	\
-		fdf_struct_utils.c	\
+		fdf_parse.c			\
+		fdf_parse_utils.c	\
+		fdf_draw.c			\
+		fdf_draw_utils.c	\
+		fdf_view.c			\
 		fdf_utils.c			\
 
 OBJT = $(SRC:.c=.o)

@@ -8,9 +8,11 @@ t_fdf	*map_init(t_map *map)
 	if (fdf == NULL)
 		error(ERR_MEM);
 	fdf->map = map;
-	fdf->mlx = mlx_init(WIDTH, HEIGTH, "fdf", true);
+	fdf->mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!fdf->mlx)
 		error(ERR_MLX);
+	fdf->w_width = WIDTH;
+	fdf->w_heigth = HEIGHT;
 	return (fdf);
 }
 
@@ -38,11 +40,21 @@ t_coord	*coord_init(t_point *a, t_point *b)
 void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 {
 	t_coord	*coord;
+	int		pixel;
 
+	// if (a->y == 0 && b->y == 0)
+	// {
+	// 	printf("a->x = %d | a->y = %d\n", a->x, a->y);
+	// 	printf("a->sx = %d | a->sy = %d\n", a->sx, a->sy);
+	// 	printf("b->x = %d | b->y = %d\n", b->x, b->y);
+	// 	printf("b->sx = %d | b->sy = %d\n\n", b->sx, b->sy);
+	// }
 	coord = coord_init(a, b);
 	while (1)
 	{
-		mlx_put_pixel(fdf->mlx_image, a->sx, a->sy, 0xFFFFFF);
+		pixel = (a->sx * 4) + (a->sy * fdf->mlx_image->width * 4);
+		if (a->sx < fdf->w_width && a->sy < fdf->w_heigth)
+			put_pixel(pixel, a, b, fdf);
 		if (a->sx == b->sx && a->sy == b->sy)
 			break ;
 		coord->err_2 = 2 * coord->err;
@@ -63,45 +75,4 @@ void	draw(t_fdf *fdf)
 {
 	draw_x(fdf);
 	draw_y(fdf);
-}
-
-void	draw_y(t_fdf *fdf)
-{
-	t_point	*point;
-	int		y;
-	int		x;
-
-	y = 0;
-	x = 0;
-	while (y < (fdf->map->height))
-	{
-		x = 0;
-		while (x < (fdf->map->width - 1))
-		{
-			point = &fdf->map->points[y][x + 1];
-			bresenham(&fdf->map->points[y][x], point, fdf);
-			x++;
-		}
-		y++;
-	}
-}
-void	draw_x(t_fdf *fdf)
-{
-	t_point	*point;
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
-	while (x < (fdf->map->width))
-	{
-		y = 0;
-		while (y < (fdf->map->height - 1))
-		{
-			point = &fdf->map->points[y + 1][x];
-			bresenham(&fdf->map->points[y][x], point, fdf);
-			y++;
-		}
-		x++;
-	}
 }
