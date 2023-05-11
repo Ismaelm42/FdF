@@ -95,7 +95,7 @@ void		draw_x(t_fdf *fdf);
 void		draw_y(t_fdf *fdf);
 void		draw_y0(t_fdf *fdf);
 void		draw_while(t_fdf *fdf);
-void	put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf);
+void		put_pixel(int pixel, t_point *a, t_point *b, t_fdf *fdf);
 
 //view
 void		focus(t_fdf *fdf);
@@ -226,7 +226,8 @@ void		printing_matrix(t_fdf *fdf);
 
 //coorregir fallo, no pinta la primera línea
 //algoritmo de bresenham fucked en principio.
-//se mueve en ángulo recto cuando la coordenadas son de diagonales.
+//se mueve en ángulo recto cuando la coordenadas son de diagonales?
+
 //centrar el mapa y ponerlo a escala
 
 //implementar 3D

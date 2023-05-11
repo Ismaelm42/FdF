@@ -42,9 +42,9 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 	t_coord	*coord;
 	int		pixel;
 
-	coord = coord_init(a, b);
 	while (1)
 	{
+		coord = coord_init(a, b);
 		pixel = (a->sx * 4) + (a->sy * fdf->mlx_image->width * 4);
 		if (a->sx < fdf->w_width && a->sy < fdf->w_heigth)
 			put_pixel(pixel, a, b, fdf);
@@ -53,6 +53,8 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 		coord->err_2 = 2 * coord->err;
 		if (coord->err_2 >= coord->dy)
 		{
+			if (a->x == 1 && a->y == 0 && b->x == 1 && b->y == 1)
+				printf("coord->err_2 = %d\ncoord->dy = %d\n", coord->err_2, coord->dy);
 			coord->err = coord->err + coord->dy;
 			a->sx = a->sx + coord->inc_x;
 		}	
@@ -62,9 +64,28 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 			a->sy = a->sy + coord->inc_y;
 		}
 	}
+	free(coord);
 }
 
 void	draw(t_fdf *fdf)
 {
-	draw_while(fdf);
+	int		y;
+	int		x;
+
+	y = 0;
+	while (y < fdf->map->height)
+	{
+		x = 0;
+		while (x < fdf->map->width)
+		{
+			if (x < fdf->map->width - 1)
+				bresenham(&fdf->map->points[y][x], \
+				&fdf->map->points[y][x + 1], fdf);
+			if (y < fdf->map->height - 1)
+				bresenham(&fdf->map->points[y][x], \
+				&fdf->map->points[y + 1][x], fdf);
+			x++;
+		}
+		y++;
+	}
 }
