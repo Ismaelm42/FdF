@@ -18,11 +18,11 @@ int	ft_abs(int n)
 	return (n);
 }
 
-void	swap(int *x, int *y)
+void	swap(t_point *point)
 {
-	int	*a;
+	int	a;
 
-	a = x;
-	x = y;
-	y = a;
+	a = point->sx;
+	point->sx = point->sy;
+	point->sy = a;
 }

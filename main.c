@@ -38,8 +38,10 @@ int	main(int argc, char **argv)
 
 	//focus
 	focus(fdf);
-	printf("width = %d\n", fdf->map->width);
-	printf("height = %d\n", fdf->map->height);
+	printf("AWsx=1 ==%d\n", fdf->map->points[0][1].sx);
+	printf("AWsy=0 ==%d\n\n\n\n\n\n\n\n", fdf->map->points[0][1].sy);
+	// printf("width = %d\n", fdf->map->width);
+	// printf("height = %d\n", fdf->map->height);
 
 	//draw
 	draw(fdf);

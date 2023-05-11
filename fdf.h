@@ -105,7 +105,7 @@ void		focus(t_fdf *fdf);
 void		ft_leaks(void);
 void		error(char *err);
 int			ft_abs(int n);
-void		swap(int *x, int *y);
+void		swap(t_point *point);
 
 
 //personal utils

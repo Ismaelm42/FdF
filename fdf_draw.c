@@ -42,9 +42,15 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 	t_coord	*coord;
 	int		pixel;
 
+	if (a->x == 1 && a->y == 4)
+	{
+		printf("AWsx=1 ==%d\n", fdf->map->points[0][1].sx);
+		printf("AWsy=0 ==%d\n\n\n\n\n\n\n\n", fdf->map->points[0][1].sy);
+	}
+	//tengo que utilizar coordenadas x e y, creo;
+	coord = coord_init(a, b);
 	while (1)
 	{
-		coord = coord_init(a, b);
 		pixel = (a->sx * 4) + (a->sy * fdf->mlx_image->width * 4);
 		if (a->sx < fdf->w_width && a->sy < fdf->w_heigth)
 			put_pixel(pixel, a, b, fdf);
@@ -53,8 +59,6 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 		coord->err_2 = 2 * coord->err;
 		if (coord->err_2 >= coord->dy)
 		{
-			if (a->x == 1 && a->y == 0 && b->x == 1 && b->y == 1)
-				printf("coord->err_2 = %d\ncoord->dy = %d\n", coord->err_2, coord->dy);
 			coord->err = coord->err + coord->dy;
 			a->sx = a->sx + coord->inc_x;
 		}	
