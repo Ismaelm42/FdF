@@ -6,7 +6,7 @@
 #    By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 11:31:34 by imoro-sa          #+#    #+#              #
-#    Updated: 2023/05/12 11:31:35 by imoro-sa         ###   ########.fr        #
+#    Updated: 2023/05/12 18:14:26 by imoro-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ CFLAGS = -Wall -Werror -Wextra
 MAKEFLAGS += --quiet
 
 all: $(LIBFT) $(MLX42) $(NAME)
+	$(MAKE) clean
 
 $(NAME): $(OBJT)
 		$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(INCFLAGS)
@@ -62,10 +63,9 @@ clean:
 
 fclean: clean
 		$(MAKE) fclean -C $(LIBFT_DIR)
-		$(MAKE) clean -C $(MLX42_DIR)
+		$(MAKE) fclean -C $(MLX42_DIR)
 		$(RM) $(NAME)
 
 re: fclean all
-	$(MAKE) clean
 
 .PHONY: all clean fclean re
