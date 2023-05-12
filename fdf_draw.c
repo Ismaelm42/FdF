@@ -6,13 +6,13 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:30:39 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:30:41 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:57:39 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-t_fdf	*map_init(t_map *map)
+t_fdf	*struct_init(t_map *map)
 {
 	t_fdf	*fdf;
 
@@ -28,13 +28,15 @@ t_fdf	*map_init(t_map *map)
 	return (fdf);
 }
 
-t_coord	*coord_init(t_point *a, t_point *b)
+t_coord	*bresenham_coord(t_point *a, t_point *b)
 {
 	t_coord	*coord;
 
 	coord = (t_coord *)malloc(sizeof(t_coord));
 	if (coord == NULL)
 		error(ERR_MEM);
+	coord->x = a->sx;
+	coord->y = a->sy;
 	coord->dx = ft_abs(b->sx - a->sx);
 	coord->dy = -ft_abs(b->sy - a->sy);
 	if (a->sx < b->sx)
@@ -52,35 +54,31 @@ t_coord	*coord_init(t_point *a, t_point *b)
 void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 {
 	t_coord	*coord;
-	int		x;
-	int		y;
 	int		pixel;
 
-	if (a->x == 1 && a->y == 4)
-	{
-		printf("AWsx=1 ==%d\n", fdf->map->points[0][1].sx);
-		printf("AWsy=0 ==%d\n\n\n\n\n\n\n\n", fdf->map->points[0][1].sy);
-	}
-	coord = coord_init(a, b);
-	x = a->sx;
-	y = a->sy;
+	// if (a->x == 1 && a->y == 4)
+	// {
+	// 	printf("AWsx=1 ==%d\n", fdf->map->points[0][1].sx);
+	// 	printf("AWsy=0 ==%d\n\n\n\n\n\n\n\n", fdf->map->points[0][1].sy);
+	// }
+	coord = bresenham_coord(a, b);
 	while (1)
 	{
-		pixel = (x * 4) + (y * fdf->mlx_image->width * 4);
-		if (x < fdf->w_width && y < fdf->w_heigth)
+		pixel = (coord->x * 4) + (coord->y * fdf->mlx_image->width * 4);
+		if (coord->x < fdf->w_width && coord->y < fdf->w_heigth)
 			put_pixel(pixel, a, b, fdf);
-		if (x == b->sx && y == b->sy)
+		if (coord->x == b->sx && coord->y == b->sy)
 			break ;
 		coord->err_2 = 2 * coord->err;
 		if (coord->err_2 >= coord->dy)
 		{
 			coord->err = coord->err + coord->dy;
-			x = x + coord->inc_x;
+			coord->x = coord->x + coord->inc_x;
 		}	
 		if (coord->err_2 <= coord->dx)
 		{
 			coord->err = coord->err + coord->dx;
-			y = y + coord->inc_y;
+			coord->y = coord->y + coord->inc_y;
 		}
 	}
 	free(coord);

@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:23 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:31:30 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:21:57 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	main(int argc, char **argv)
 	if (argc <= 1 || argc > 2)
 		return (0);
 	map = map_size(argv[1]);
-	matrix_init(map);
+	map_init(map);
 	coordinates_xyz(argv[1], map);
 
 	//mlx_init
-	fdf = map_init(map);
+	fdf = struct_init(map);
 	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_heigth);
 
 	if (!fdf->mlx)
@@ -55,29 +55,14 @@ int	main(int argc, char **argv)
 
 	//mlx loop
 	mlx_loop(fdf->mlx);
+	//matrix_free(fdf);
 
 	//mlx_terminate
 	mlx_delete_image(fdf->mlx, fdf->mlx_image);
 	mlx_terminate(fdf->mlx);
+	matrix_free(fdf);
 	return (0);
 }
-
-
-
-
-
-
-
-// int	compare(int a, int b)
-// {
-// 	int	ret;
-
-// 	if (a < b)
-// 		ret = 1;
-// 	else
-// 		ret = -1;
-// 	return (ret);
-// }
 
 // t_param	*init_param(t_point *a, t_point *b)
 // {

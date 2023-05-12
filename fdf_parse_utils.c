@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:42 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:30:57 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:29:05 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,18 @@ int	hex_to_decimal(char *buffer, int channel)
 void	get_altitude(t_point *point, char *buffer)
 {
 	int		len;
+	char	*number;
 
 	if (ft_strchr(buffer, ',') == NULL)
 		point->z = ft_atoi(buffer);
 	else
 	{
 		len = ft_strlen(buffer) - ft_strlen(ft_strchr(buffer, ','));
-		point->z = ft_atoi(ft_substr(buffer, 0, len));
+		number = ft_substr(buffer, 0, len);
+		if (number == NULL)
+			error(ERR_MEM);
+		point->z = ft_atoi(number);
+		free(number);
 	}
 }
 

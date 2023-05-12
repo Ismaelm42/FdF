@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:47:24 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:31:02 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:22:46 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ t_map	*map_size(char *argv)
 		else if (map->height != 0 && map->width != wrd_counter(buffer, 32))
 			error(ERR_MAP_SIZE);
 		map->height++;
+		free(buffer);
 	}
 	return (close(fd), map);
 }
 
-void	matrix_init(t_map *map)
+void	map_init(t_map *map)
 {
 	int		i;
 
@@ -102,7 +103,7 @@ void	get_altitude_and_rgb(char *argv, t_map *map)
 			x++;
 		}
 		y++;
+		split_free(buffer);
 	}
-	free(buffer);
 	close(fd);
 }

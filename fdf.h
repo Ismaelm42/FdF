@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:34 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:31:26 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:24:34 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_map
 
 typedef struct s_coord
 {	
+	int				x;
+	int				y;
 	int				dx;
 	int				dy;
 	int				inc_x;
@@ -71,7 +73,7 @@ typedef struct s_fdf
 
 //init_map
 t_map		*map_size(char *argv);
-void		matrix_init(t_map *map);
+void		map_init(t_map *map);
 void		coordinates_xyz(char *argv, t_map *map);
 void		get_altitude_and_rgb(char *argv, t_map *map);
 
@@ -84,8 +86,8 @@ void		get_rgb(t_point *point, char *buffer);
 
 
 //drawing
-t_fdf		*map_init(t_map *map);
-t_coord		*coord_init(t_point *a, t_point *b);
+t_fdf		*struct_init(t_map *map);
+t_coord		*bresenham_coord(t_point *a, t_point *b);
 void		bresenham(t_point *a, t_point *b, t_fdf *fdf);
 void		draw(t_fdf *fdf);
 
@@ -105,7 +107,8 @@ void		focus(t_fdf *fdf);
 void		ft_leaks(void);
 void		error(char *err);
 int			ft_abs(int n);
-void		swap(t_point *point);
+void		matrix_free(t_fdf *fdf);
+void		split_free(char **buffer);
 
 
 //personal utils
@@ -237,5 +240,10 @@ void		printing_matrix(t_fdf *fdf);
 //CRASHEOS:
 //comprobar si hay letras en el mapa y tal le da igual, sigue
 //si hay , y luego no hay 0x crashea
-//seg.fault en mapas como x_pyramide.
-//los mapas que son mas grandes crashean parece ser
+
+//3D
+//implementar el paso de 2D a 3D
+//implementar una venta nueva centrada que se vaya redimensionando a cada movimiento que se realice con el teclado.
+//esto se realiza con fórmulas con x, y, z de forma que sólo con las variables x e y tendremos también el valor de la z.
+//implementar una rotación para que el objeto gire dependiendo del eje.
+//implementar varias perspectivas.
