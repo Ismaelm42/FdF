@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:34 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/05 13:46:37 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:31:26 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,3 +237,5 @@ void		printing_matrix(t_fdf *fdf);
 //CRASHEOS:
 //comprobar si hay letras en el mapa y tal le da igual, sigue
 //si hay , y luego no hay 0x crashea
+//seg.fault en mapas como x_pyramide.
+//los mapas que son mas grandes crashean parece ser

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_draw.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/12 11:30:39 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/12 11:30:41 by imoro-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "fdf.h"
 
 t_fdf	*map_init(t_map *map)
@@ -55,7 +67,7 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 	while (1)
 	{
 		pixel = (x * 4) + (y * fdf->mlx_image->width * 4);
-		if (x < fdf->w_width && x < fdf->w_heigth)
+		if (x < fdf->w_width && y < fdf->w_heigth)
 			put_pixel(pixel, a, b, fdf);
 		if (x == b->sx && y == b->sy)
 			break ;
