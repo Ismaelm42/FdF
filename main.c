@@ -29,82 +29,35 @@ int	main(int argc, char **argv)
 
 	//mlx_init
 	fdf = struct_init(map);
-	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_heigth);
 
+	//create_window
+	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_heigth);
 	if (!fdf->mlx)
 		error(ERR_MLX);
-	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, 0, 0) < 0)
+	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, WIDTH / 5 * 1.5, HEIGHT / 4) == -1)
 		error(ERR_MLX);
 
-	//focus
-	focus(fdf);
-	printf("AWsx=1 ==%d\n", fdf->map->points[0][1].sx);
-	printf("AWsy=0 ==%d\n\n\n\n\n\n\n\n", fdf->map->points[0][1].sy);
-	// printf("width = %d\n", fdf->map->width);
-	// printf("height = %d\n", fdf->map->height);
+	//perspective
+	perspective(fdf);
 
 	//draw
 	draw(fdf);
 
-	//bresenham_test
-	// t_point *a;
-	// t_point *b;
-	// a = &fdf->map->points[0][0];
-	// b = &fdf->map->points[10][18];
-	// bresenham(a, b, fdf);
+	//mlx_menu
+	//menu(fdf);
 
-	//mlx loop
+	//mlx_loop
 	mlx_loop(fdf->mlx);
-	//matrix_free(fdf);
 
 	//mlx_terminate
 	mlx_delete_image(fdf->mlx, fdf->mlx_image);
 	mlx_terminate(fdf->mlx);
+
+	//matrix_free(fdf);
 	matrix_free(fdf);
 	return (0);
 }
 
-// t_param	*init_param(t_point *a, t_point *b)
-// {
-// 	t_param	*param;
-
-// 	param = (t_param *)malloc(sizeof(t_param));
-// 	if (!param)
-// 		return (NULL);
-// 	param->dx = abs(b->x - a->x);
-// 	param->sx = compare(a->x, b->x);
-// 	param->dy = -abs(b->y - a->y);
-// 	param->sy = compare(a->y, b->y);
-// 	param->err = param->dx + param->dy;
-// 	return (param);
-// }
-
-// void	bresenham(t_fdf *fdf, t_point *a, t_point *b)
-// {
-// 	t_param	*param;
-
-// 	param = init_param(a, b);
-// 	while (1)
-// 	{
-// 		put_pixel(fdf, a->x, a->y);
-// 		if (a->x == b->x && a->y == b->y)
-// 			break ;
-// 		param->e2 = 2 * param->err;
-// 		if (param->e2 >= param->dy)
-// 		{
-// 			param->err += param->dy;
-// 			a->x += param->sx;
-// 		}	
-// 		if (param->e2 <= param->dx)
-// 		{
-// 			param->err += param->dx;
-// 			a->y += param->sy;
-// 		}
-// 	}
-// 	free(a);
-// 	free(b);
-// 	free(param);
-// }
 
 
 

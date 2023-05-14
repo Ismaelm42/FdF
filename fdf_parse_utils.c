@@ -85,6 +85,8 @@ void	get_rgb(t_point *point, char *buffer)
 	else
 	{
 		buffer = ft_strnstr(buffer, "0x", ft_strlen(buffer));
+		if (buffer == NULL)
+			error(ERR_INPUT);
 		if (ft_strlen(buffer) >= 4)
 			point->r = hex_to_decimal(buffer, 2);
 		if (ft_strlen(buffer) >= 6)

@@ -18,13 +18,14 @@ else
 	INCFLAGS = -ldl -DEBUG=1 -Iinclude -lglfw -L"usr/lib/x86_64-linux-gnu/"
 endif
 
-SRC =	main.c				\
-		fdf_parse.c			\
-		fdf_parse_utils.c	\
-		fdf_draw.c			\
-		fdf_draw_utils.c	\
-		fdf_view.c			\
-		fdf_utils.c			\
+SRC =	main.c					\
+		fdf_parse.c				\
+		fdf_parse_utils.c		\
+		fdf_draw.c				\
+		fdf_perspective.c		\
+		fdf_perspective_utils.c	\
+		fdf_utils.c				\
+		fdf_menu.c				\
 
 OBJT = $(SRC:.c=.o)
 
@@ -48,7 +49,7 @@ all: $(LIBFT) $(MLX42) $(NAME)
 	$(MAKE) clean
 
 $(NAME): $(OBJT)
-		$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT) $(MLX42) $(INCFLAGS)
+		$(CC) $(CFLAGS) $(SRC) -o $(NAME) -lm $(LIBFT) $(MLX42) $(INCFLAGS)
 
 $(LIBFT):
 		$(MAKE) -C $(LIBFT_DIR)
