@@ -25,7 +25,8 @@ SRC =	main.c					\
 		fdf_perspective.c		\
 		fdf_perspective_utils.c	\
 		fdf_utils.c				\
-		fdf_menu.c				\
+		fdf_hooks.c				\
+		fdf_hooks_utils.c		\
 
 OBJT = $(SRC:.c=.o)
 

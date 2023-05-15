@@ -34,17 +34,19 @@ int	main(int argc, char **argv)
 	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_heigth);
 	if (!fdf->mlx)
 		error(ERR_MLX);
-	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, WIDTH / 5 * 1.5, HEIGHT / 4) == -1)
+	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, 0, 0) == -1)
 		error(ERR_MLX);
 
 	//perspective
 	perspective(fdf);
+	focus(fdf);
 
 	//draw
 	draw(fdf);
 
-	//mlx_menu
-	//menu(fdf);
+	//focus(fdf);
+	//mlx_hooks
+	mlx_loop_hook(fdf->mlx, &hooks, (void *)fdf);
 
 	//mlx_loop
 	mlx_loop(fdf->mlx);

@@ -25,6 +25,9 @@ t_fdf	*struct_init(t_map *map)
 		error(ERR_MLX);
 	fdf->w_width = WIDTH;
 	fdf->w_heigth = HEIGHT;
+	fdf->alpha = 0;
+	fdf->beta = 0;
+	fdf->gamma = 0;
 	return (fdf);
 }
 
@@ -93,6 +96,8 @@ void	draw(t_fdf *fdf)
 	int		x;
 
 	y = 0;
+	ft_bzero(fdf->mlx_image->pixels, \
+		sizeof(int) * fdf->mlx_image->width * fdf->mlx_image->height);
 	while (y < fdf->map->height)
 	{
 		x = 0;

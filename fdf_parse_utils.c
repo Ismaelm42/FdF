@@ -42,6 +42,8 @@ int	hex_to_decimal(char *buffer, int channel)
 	i = 0;
 	j = 0;
 	base = ft_strdup("0123456789abcdefABCDEF");
+	if (base == NULL)
+		error(ERR_MEM);
 	while (buffer[channel] != base[i])
 		i++;
 	while (buffer[channel + 1] != base[j])

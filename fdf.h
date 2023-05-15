@@ -98,23 +98,38 @@ void		matrix_free(t_fdf *fdf);
 void		split_free(char **buffer);
 
 //perspective
+void		isometric(t_point *point);
 void		perspective(t_fdf *fdf);
-void		view(t_point *point);
-void		translate(t_fdf *fdf);
+void		view(t_point *point, t_fdf *fdf);
+void		focus(t_fdf *fdf);
 
 //perspective_utils
-int			*minimum(t_fdf *fdf);
-void		rotate_x(t_point *point);
-void		rotate_y(t_point *point);
-void		rotate_z(t_point *point);
-void		isometric(t_point *point);
+int			*get_minimum(t_fdf *fdf);
+int			*get_maximum(t_fdf *fdf);
+void		rotate_x(t_point *point, t_fdf *fdf);
+void		rotate_y(t_point *point, t_fdf *fdf);
+void		rotate_z(t_point *point, t_fdf *fdf);
 
-//bonus
-void		menu(t_fdf *fdf);
+//hooks
+void		hooks(void *struc);
+void		close_window(t_fdf *fdf);
+void		make_rotation(t_fdf *fdf);
+void		make_translation(t_fdf *fdf);
+void		make_zoom(t_fdf *fdf);
 
-//personal utils
-void		printing_matrix(t_fdf *fdf);
+//hooks_utils
+void		translate(t_fdf *fdf, char *buffer);
 
 #endif
 
+
+//RESOLVER:
+
 //mapa de julia y fractol no funcionan pero no se crashea el programa.
+//split? get_next_line?
+
+//valores negativos en z
+
+//zoom bonus.
+
+//cambiar funciones perspective. Esta es parte del código rara.
