@@ -22,8 +22,8 @@ SRC =	main.c					\
 		fdf_parse.c				\
 		fdf_parse_utils.c		\
 		fdf_draw.c				\
-		fdf_perspective.c		\
-		fdf_perspective_utils.c	\
+		fdf_viewpoint.c		\
+		fdf_viewpoint_utils.c	\
 		fdf_utils.c				\
 		fdf_hooks.c				\
 		fdf_hooks_utils.c		\

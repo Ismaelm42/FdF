@@ -25,6 +25,7 @@ t_fdf	*struct_init(t_map *map)
 		error(ERR_MLX);
 	fdf->w_width = WIDTH;
 	fdf->w_heigth = HEIGHT;
+	fdf->zoom = 1;
 	fdf->alpha = 0;
 	fdf->beta = 0;
 	fdf->gamma = 0;
@@ -71,7 +72,8 @@ void	bresenham(t_point *a, t_point *b, t_fdf *fdf)
 	while (1)
 	{
 		pixel = (coord->x * 4) + (coord->y * fdf->mlx_image->width * 4);
-		if (coord->x < WIDTH && coord->y < HEIGHT)
+		if ((coord->x < WIDTH && coord->x > 0)
+			&& (coord->y < HEIGHT && coord->y > 0))
 			put_pixel(pixel, a, fdf);
 		if (coord->x == b->sx && coord->y == b->sy)
 			break ;

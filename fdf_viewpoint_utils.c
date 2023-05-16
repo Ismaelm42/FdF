@@ -26,32 +26,6 @@ int	*get_minimum(t_fdf *fdf)
 	return (min);
 }
 
-int	*get_maximum(t_fdf *fdf)
-{
-	int	x;
-	int	y;
-	int	*max;
-
-	y = 0;
-	max = (int *)malloc(sizeof(int) * 2);
-	max[0] = fdf->map->points[0][0].sx;
-	max[1] = fdf->map->points[0][0].sy;
-	while (y < fdf->map->height)
-	{
-		x = 0;
-		while (x < fdf->map->width)
-		{
-			if (fdf->map->points[y][x].sx > max[0])
-				max[0] = fdf->map->points[y][x].sx;
-			if (fdf->map->points[y][x].sy > max[1])
-				max[1] = fdf->map->points[y][x].sy;
-			x++;
-		}
-		y++;
-	}
-	return (max);
-}
-
 void	rotate_x(t_point *point, t_fdf *fdf)
 {
 	point->sy = point->sy * cos(fdf->alpha) + point->sz * sin(fdf->alpha);
@@ -70,4 +44,14 @@ void	rotate_z(t_point *point, t_fdf *fdf)
 	point->sy = point->sx * sin(fdf->gamma) + point->sy * cos(fdf->gamma);
 }
 
+void	isometric(t_point *point)
+{
+	int	x;
+	int	y;
 
+	x = point->sx;
+	y = point->sy;
+
+	point->sx = (x - y) * cos(0.52);
+	point->sy = (x + y) * sin(0.52) - point->sz;
+}

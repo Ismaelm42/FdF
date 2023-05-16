@@ -22,7 +22,7 @@
 # define ERR_MEM "Memory allocation failed\n"
 # define ERR_MLX "Error opening MLX\n"
 # define WIDTH 1400
-# define HEIGHT 900
+# define HEIGHT 1100
 
 typedef struct s_point
 {
@@ -98,14 +98,14 @@ void		matrix_free(t_fdf *fdf);
 void		split_free(char **buffer);
 
 //perspective
-void		isometric(t_point *point);
-void		perspective(t_fdf *fdf);
-void		view(t_point *point, t_fdf *fdf);
+void		zoom(t_fdf *fdf);
+void		rotation(t_fdf *fdf);
+void		viewpoint(t_fdf *fdf);
 void		focus(t_fdf *fdf);
 
 //perspective_utils
+void		isometric(t_point *point);
 int			*get_minimum(t_fdf *fdf);
-int			*get_maximum(t_fdf *fdf);
 void		rotate_x(t_point *point, t_fdf *fdf);
 void		rotate_y(t_point *point, t_fdf *fdf);
 void		rotate_z(t_point *point, t_fdf *fdf);
@@ -113,9 +113,11 @@ void		rotate_z(t_point *point, t_fdf *fdf);
 //hooks
 void		hooks(void *struc);
 void		close_window(t_fdf *fdf);
-void		make_rotation(t_fdf *fdf);
-void		make_translation(t_fdf *fdf);
-void		make_zoom(t_fdf *fdf);
+void		do_rotation_xy(t_fdf *fdf);
+void		do_rotation_z(t_fdf *fdf);
+void		do_translation(t_fdf *fdf);
+void		do_zoom(t_fdf *fdf);
+
 
 //hooks_utils
 void		translate(t_fdf *fdf, char *buffer);
@@ -125,11 +127,61 @@ void		translate(t_fdf *fdf, char *buffer);
 
 //RESOLVER:
 
-//mapa de julia y fractol no funcionan pero no se crashea el programa.
-//split? get_next_line?
+//mapa de julia y fractol funcionan!
+//no sé qué ha provocado el cambio.
+//el único problema es que va lentísimo. posiblemente por split y gnl como dijo javi.
 
-//valores negativos en z
+//zoom bonus
+//zoom no está bien, ni el normal ni el bonus
 
-//zoom bonus.
 
-//cambiar funciones perspective. Esta es parte del código rara.
+//un botón para centrar la figura estaría bien (la c mismo)
+//una función para centrar la iso
+
+//cuando se traslada la figura, al luego rotarla spawnea en la posición inicial
+//probablemente sea la estructura viewpoint que está mal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//focus un poco mierdas:
+
+// void	focus(t_fdf *fdf)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	*min;
+
+// 	y = 0;
+// 	min = get_minimum(fdf);
+// 	while (y < fdf->map->height)
+// 	{
+// 		x = 0;
+// 		while (x < fdf->map->width)
+// 		{
+// 			fdf->map->points[y][x].sx -= min[0];
+// 			fdf->map->points[y][x].sy -= min[1];
+// 			fdf->map->points[y][x].sx += (fdf->w_width / 4) - (fdf->map->width * fdf->zoom / 4);
+// 			fdf->map->points[y][x].sy += (fdf->w_heigth / 4) - (fdf->map->height * fdf->zoom / 4);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	free(min);
+// }
