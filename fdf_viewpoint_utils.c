@@ -1,4 +1,16 @@
-# include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_viewpoint_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/17 12:05:18 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/17 12:07:41 by imoro-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
 
 int	*get_minimum(t_fdf *fdf)
 {
@@ -51,7 +63,6 @@ void	isometric(t_point *point)
 
 	x = point->sx;
 	y = point->sy;
-
 	point->sx = (x - y) * cos(0.52);
 	point->sy = (x + y) * sin(0.52) - point->sz;
 }

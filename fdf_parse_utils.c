@@ -6,11 +6,11 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:42 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 15:29:05 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:07:47 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
 int	wrd_counter(char *s, char c)
 {

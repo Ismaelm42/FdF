@@ -6,11 +6,11 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:46:23 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 17:21:57 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:12:23 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
 int	main(int argc, char **argv)
 {
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 	zoom(fdf);
 	rotation(fdf);
 	viewpoint(fdf);
+	focus(fdf);
 	draw(fdf);
 
 	mlx_loop_hook(fdf->mlx, &hooks, (void *)fdf);
@@ -47,69 +48,4 @@ int	main(int argc, char **argv)
 
 	matrix_free(fdf);
 	return (0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void	printing_matrix(t_fdf *fdf)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < fdf->map->height)
-	{
-		x = 0;
-		while (x < fdf->map->width)
-		{
-			if (fdf->map->points[y][x].z == 0)
-				printf(" ");
-			printf("%d ", fdf->map->points[y][x].z);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
 }

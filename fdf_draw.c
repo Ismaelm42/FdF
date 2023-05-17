@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:30:39 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/12 11:57:39 by imoro-sa         ###   ########.fr       */
+/*   Created: 2023/05/17 12:06:09 by imoro-sa          #+#    #+#             */
+/*   Updated: 2023/05/17 12:07:53 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+#include "fdf.h"
 
 t_fdf	*struct_init(t_map *map)
 {
