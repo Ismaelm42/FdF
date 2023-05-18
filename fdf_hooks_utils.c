@@ -37,3 +37,11 @@ void	translate(t_fdf *fdf, char *buffer)
 	}
 }
 
+void	re_draw(t_fdf *fdf)
+{
+	zoom(fdf);
+	rotation(fdf);
+	viewpoint(fdf);
+	focus(fdf);
+	draw(fdf);
+}

@@ -25,7 +25,10 @@ t_fdf	*struct_init(t_map *map)
 		error(ERR_MLX);
 	fdf->w_width = WIDTH;
 	fdf->w_heigth = HEIGHT;
-	fdf->zoom = 1;
+	if (fdf->w_width / fdf->map->width < fdf->w_heigth / fdf->map->height)
+		fdf->zoom = (fdf->w_width / fdf->map->width / 1.8);
+	else
+		fdf->zoom = (fdf->w_heigth / fdf->map->height / 1.8);
 	fdf->alpha = 0;
 	fdf->beta = 0;
 	fdf->gamma = 0;

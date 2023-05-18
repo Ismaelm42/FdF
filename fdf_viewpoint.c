@@ -17,10 +17,6 @@ void	zoom(t_fdf *fdf)
 	int	x;
 	int	y;
 
-	if (fdf->w_width / fdf->map->width < fdf->w_heigth / fdf->map->height)
-		fdf->zoom = (fdf->w_width / fdf->map->width / 1.8);
-	else
-		fdf->zoom = (fdf->w_heigth / fdf->map->height / 1.8);
 	y = 0;
 	while (y < fdf->map->height)
 	{
@@ -67,7 +63,10 @@ void	viewpoint(t_fdf *fdf)
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			isometric(&fdf->map->points[y][x]);
+			if (fdf->viewpoint == 1)
+				cavalier(&fdf->map->points[y][x]);
+			else
+				isometric(&fdf->map->points[y][x]);
 			x++;
 		}
 		y++;

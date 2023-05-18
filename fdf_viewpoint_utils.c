@@ -66,3 +66,13 @@ void	isometric(t_point *point)
 	point->sx = (x - y) * cos(0.52);
 	point->sy = (x + y) * sin(0.52) - point->sz;
 }
+void	cavalier(t_point *point)
+{
+	int	x;
+	int	y;
+
+	x = point->sx;
+	y = point->sy;
+	point->sx = x + (point->sz * cos(0.52));
+	point->sy = y + (point->sz * sin(0.52));
+}

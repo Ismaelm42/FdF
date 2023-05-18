@@ -18,10 +18,26 @@ void	hooks(void *struc)
 
 	fdf = (t_fdf *)struc;
 	close_window(fdf);
+	chose_viewpoint(fdf);
 	do_translation(fdf);
-	do_rotation_xy(fdf);
+	do_rotation_x(fdf);
+	do_rotation_y(fdf);
 	do_rotation_z(fdf);
 	do_zoom(fdf);
+}
+
+void	chose_viewpoint(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
+	{
+		fdf->viewpoint = 0;
+		re_draw(fdf);
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
+	{
+		fdf->viewpoint = 1;
+		re_draw(fdf);
+	}
 }
 
 void	close_window(t_fdf *fdf)
@@ -30,43 +46,31 @@ void	close_window(t_fdf *fdf)
 		mlx_close_window(fdf->mlx);
 }
 
-void	do_rotation_xy(t_fdf *fdf)
+void	do_rotation_x(t_fdf *fdf)
 {
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
 	{
 		fdf->alpha -= 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
 	{
 		fdf->alpha += 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
+}
+
+void	do_rotation_y(t_fdf *fdf)
+{
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
 	{
 		fdf->beta += 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
 	{
 		fdf->beta -= 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
 }
 
@@ -75,20 +79,12 @@ void	do_rotation_z(t_fdf *fdf)
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
 	{
 		fdf->gamma += 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
 	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
 	{
 		fdf->gamma -= 0.007;
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		re_draw(fdf);
 	}
 }
 
@@ -118,32 +114,25 @@ void	do_translation(t_fdf *fdf)
 
 void	do_zoom(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_CONTROL))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
 	{
+		fdf->zoom += 1;
 		zoom(fdf);
-		fdf->zoom *= 1.1;
 		rotation(fdf);
 		viewpoint(fdf);
 		focus(fdf);
 		draw(fdf);
 	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_LEFT_ALT))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
 	{
-		zoom(fdf);
-		rotation(fdf);
-		viewpoint(fdf);
-		focus(fdf);
-		draw(fdf);
+		if (fdf->zoom > 0)
+		{
+			fdf->zoom -= 1;
+			zoom(fdf);
+			rotation(fdf);
+			viewpoint(fdf);
+			focus(fdf);
+			draw(fdf);
+		}
 	}
 }
-
-
-//guardar las variables y volver a pintarlo pero ubicandolo en la anterior posición?
-//se pueden quizas guardar las variables?
-//int x
-//int y
-//...
-//x = posición nueva;
-//y = posición nueva;
-//???
-//el problema está en el planteamiento de zoom

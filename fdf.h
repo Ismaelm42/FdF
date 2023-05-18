@@ -69,6 +69,9 @@ typedef struct s_fdf
 	float			alpha;
 	float			beta;
 	float			gamma;
+	int				viewpoint;
+	int				*min;
+	int				*max;
 }					t_fdf;
 
 //init_map
@@ -105,6 +108,7 @@ void		focus(t_fdf *fdf);
 
 //perspective_utils
 void		isometric(t_point *point);
+void		cavalier(t_point *point);
 int			*get_minimum(t_fdf *fdf);
 void		rotate_x(t_point *point, t_fdf *fdf);
 void		rotate_y(t_point *point, t_fdf *fdf);
@@ -113,7 +117,9 @@ void		rotate_z(t_point *point, t_fdf *fdf);
 //hooks
 void		hooks(void *struc);
 void		close_window(t_fdf *fdf);
-void		do_rotation_xy(t_fdf *fdf);
+void		chose_viewpoint(t_fdf *fdf);
+void		do_rotation_x(t_fdf *fdf);
+void		do_rotation_y(t_fdf *fdf);
 void		do_rotation_z(t_fdf *fdf);
 void		do_translation(t_fdf *fdf);
 void		do_zoom(t_fdf *fdf);
@@ -121,6 +127,7 @@ void		do_zoom(t_fdf *fdf);
 
 //hooks_utils
 void		translate(t_fdf *fdf, char *buffer);
+void		re_draw(t_fdf *fdf);
 
 #endif
 
