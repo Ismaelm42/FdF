@@ -77,22 +77,23 @@ void	focus(t_fdf *fdf)
 {
 	int	x;
 	int	y;
-	int	*min;
 
 	y = 0;
-	min = get_minimum(fdf);
+	get_min_and_max(fdf);
 	while (y < fdf->map->height)
 	{
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			fdf->map->points[y][x].sx -= min[0];
-			fdf->map->points[y][x].sy -= min[1];
-			fdf->map->points[y][x].sx += (fdf->w_width / 4) - (fdf->map->width * fdf->zoom / 4);
-			fdf->map->points[y][x].sy += (fdf->w_heigth / 4) - (fdf->map->height * fdf->zoom / 4);
+			fdf->map->points[y][x].sx -= fdf->min_and_max[0];
+			fdf->map->points[y][x].sy -= fdf->min_and_max[1];
+			printf("sx = %d\n", fdf->map->points[y][x].sx);
+			printf("sy = %d\n", fdf->map->points[y][x].sy);
+			fdf->map->points[y][x].sx += (fdf->w_width / 2) - (fdf->min_and_max[2]/ 2);
+			fdf->map->points[y][x].sy += (fdf->w_height / 2) - (fdf->min_and_max[3]/ 2);
 			x++;
 		}
 		y++;
 	}
-	free(min);
+	free(fdf->min_and_max);
 }

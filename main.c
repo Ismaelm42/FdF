@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	fdf = struct_init(map);
 
 
-	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_heigth);
+	fdf->mlx_image = mlx_new_image(fdf->mlx, fdf->w_width, fdf->w_height);
 	if (!fdf->mlx_image)
 		error(ERR_MLX);
 	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, 0, 0) == -1)

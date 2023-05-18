@@ -64,14 +64,13 @@ typedef struct s_fdf
 	mlx_t			*mlx;
 	mlx_image_t		*mlx_image;
 	int				w_width;
-	int				w_heigth;
+	int				w_height;
 	int				zoom;
 	float			alpha;
 	float			beta;
 	float			gamma;
 	int				viewpoint;
-	int				*min;
-	int				*max;
+	int				*min_and_max;
 }					t_fdf;
 
 //init_map
@@ -109,7 +108,7 @@ void		focus(t_fdf *fdf);
 //perspective_utils
 void		isometric(t_point *point);
 void		cavalier(t_point *point);
-int			*get_minimum(t_fdf *fdf);
+void		get_min_and_max(t_fdf *fdf);
 void		rotate_x(t_point *point, t_fdf *fdf);
 void		rotate_y(t_point *point, t_fdf *fdf);
 void		rotate_z(t_point *point, t_fdf *fdf);

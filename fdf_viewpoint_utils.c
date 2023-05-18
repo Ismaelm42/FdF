@@ -12,30 +12,33 @@
 
 #include "fdf.h"
 
-int	*get_minimum(t_fdf *fdf)
+void	get_min_and_max(t_fdf *fdf)
 {
 	int	x;
 	int	y;
-	int	*min;
 
 	y = 0;
-	min = (int *)malloc(sizeof(int) * 2);
-	min[0] = fdf->map->points[0][0].sx;
-	min[1] = fdf->map->points[0][0].sy;
+	fdf->min_and_max = (int *)malloc(sizeof(int) * 4);
+	ft_memset(fdf->min_and_max, 0, 4);
 	while (y < fdf->map->height)
 	{
 		x = 0;
 		while (x < fdf->map->width)
 		{
-			if (fdf->map->points[y][x].sx < min[0])
-				min[0] = fdf->map->points[y][x].sx;
-			if (fdf->map->points[y][x].sy < min[1])
-				min[1] = fdf->map->points[y][x].sy;
+			if (fdf->map->points[y][x].sx < fdf->min_and_max[0])
+				fdf->min_and_max[0] = fdf->map->points[y][x].sx;
+			if (fdf->map->points[y][x].sy < fdf->min_and_max[1])
+				fdf->min_and_max[1] = fdf->map->points[y][x].sy;
+			if (fdf->map->points[y][x].sx > fdf->min_and_max[2])
+				fdf->min_and_max[2] = fdf->map->points[y][x].sx;
+			if (fdf->map->points[y][x].sy > fdf->min_and_max[3])
+				fdf->min_and_max[3] = fdf->map->points[y][x].sy;
 			x++;
 		}
 		y++;
 	}
-	return (min);
+	fdf->min_and_max[2] -= fdf->min_and_max[0];
+	fdf->min_and_max[3] -= fdf->min_and_max[1];
 }
 
 void	rotate_x(t_point *point, t_fdf *fdf)
