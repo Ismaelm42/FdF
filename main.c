@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 		error(ERR_MLX);
 	if (mlx_image_to_window(fdf->mlx, fdf->mlx_image, 0, 0) == -1)
 		error(ERR_MLX);
-		
 	zoom(fdf);
 	rotation(fdf);
 	viewpoint(fdf);

@@ -19,6 +19,7 @@ void	hooks(void *struc)
 	fdf = (t_fdf *)struc;
 	close_window(fdf);
 	chose_viewpoint(fdf);
+	do_inc_z(fdf);
 	do_translation(fdf);
 	do_rotation_x(fdf);
 	do_rotation_y(fdf);
@@ -134,5 +135,19 @@ void	do_zoom(t_fdf *fdf)
 			focus(fdf);
 			draw(fdf);
 		}
+	}
+}
+
+void	do_inc_z(t_fdf *fdf)
+{
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
+	{
+		inc_z(fdf, "ADD");
+		re_draw(fdf);
+	}
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
+	{
+		inc_z(fdf, "SUBSTRACT");
+		re_draw(fdf);
 	}
 }

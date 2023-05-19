@@ -37,6 +37,31 @@ void	translate(t_fdf *fdf, char *buffer)
 	}
 }
 
+void	inc_z(t_fdf *fdf, char *buffer)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < fdf->map->height)
+	{
+		x = 0;
+		while (x < fdf->map->width)
+		{
+			if (ft_strnstr(buffer, "ADD", 3) != NULL)
+				if (fdf->map->points[y][x].z != 0)
+					if (fdf->map->points[y][x].z + 1 != 0)
+						fdf->map->points[y][x].z += 1;
+			if (ft_strnstr(buffer, "SUBSTRACT", 9) != NULL)
+				if (fdf->map->points[y][x].z != 0)
+					if (fdf->map->points[y][x].z - 1 != 0)
+						fdf->map->points[y][x].z -= 1;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	re_draw(t_fdf *fdf)
 {
 	zoom(fdf);

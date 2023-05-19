@@ -122,10 +122,12 @@ void		do_rotation_y(t_fdf *fdf);
 void		do_rotation_z(t_fdf *fdf);
 void		do_translation(t_fdf *fdf);
 void		do_zoom(t_fdf *fdf);
+void		do_inc_z(t_fdf *fdf);
 
 
 //hooks_utils
 void		translate(t_fdf *fdf, char *buffer);
+void		inc_z(t_fdf *fdf, char *buffer);
 void		re_draw(t_fdf *fdf);
 
 #endif
