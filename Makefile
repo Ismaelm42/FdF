@@ -6,7 +6,7 @@
 #    By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/12 11:31:34 by imoro-sa          #+#    #+#              #
-#    Updated: 2023/05/17 12:05:37 by imoro-sa         ###   ########.fr        #
+#    Updated: 2023/05/22 11:51:17 by imoro-sa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,12 @@ SRC =	main.c					\
 		fdf_parse.c				\
 		fdf_parse_utils.c		\
 		fdf_draw.c				\
-		fdf_viewpoint.c		\
+		fdf_viewpoint.c			\
 		fdf_viewpoint_utils.c	\
+		fdf_perspectives.c		\
 		fdf_utils.c				\
 		fdf_hooks.c				\
+		fdf_hooks2.c			\
 		fdf_hooks_utils.c		\
 
 OBJT = $(SRC:.c=.o)
@@ -47,7 +49,6 @@ CFLAGS = -Wall -Werror -Wextra
 MAKEFLAGS += --quiet
 
 all: $(LIBFT) $(MLX42) $(NAME)
-	$(MAKE) clean
 
 $(NAME): $(OBJT)
 		$(CC) $(CFLAGS) $(SRC) -o $(NAME) -lm $(LIBFT) $(MLX42) $(INCFLAGS)
