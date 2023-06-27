@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 13:47:24 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/17 12:07:44 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:19:58 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_map	*map_size(char *argv)
 {
 	t_map	*map;
-	char	*buffer;
 	int		fd;
 
 	map = (t_map *)malloc(sizeof(t_map));
@@ -27,17 +26,17 @@ t_map	*map_size(char *argv)
 	map->height = 0;
 	while (1)
 	{
-		buffer = get_next_line(fd);
-		if (buffer == NULL && map->height == 0)
+		map->buffer = get_next_line(fd);
+		if (map->buffer == NULL && map->height == 0)
 			error(ERR_INPUT);
-		if (buffer == NULL)
+		if (map->buffer == NULL)
 			break ;
 		if (map->height == 0)
-			map->width = wrd_counter(buffer, 32);
-		else if (map->height != 0 && map->width != wrd_counter(buffer, 32))
+			map->width = wrd_counter(map->buffer, 32);
+		else if (map->height != 0 && map->width != wrd_counter(map->buffer, 32))
 			error(ERR_MAP_SIZE);
 		map->height++;
-		free(buffer);
+		free(map->buffer);
 	}
 	return (close(fd), map);
 }

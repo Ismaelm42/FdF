@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:05:54 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/17 13:03:30 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:39:54 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,13 @@ void	hooks(void *struc)
 
 	fdf = (t_fdf *)struc;
 	close_window(fdf);
-	chose_viewpoint(fdf);
-	do_inc_z(fdf);
-	do_translation(fdf);
+	select_viewpoint(fdf);
 	do_rotation_x(fdf);
 	do_rotation_y(fdf);
 	do_rotation_z(fdf);
+	do_translation(fdf);
 	do_zoom(fdf);
-}
-
-void	chose_viewpoint(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
-	{
-		fdf->viewpoint = 0;
-		re_draw(fdf);
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
-	{
-		fdf->viewpoint = 1;
-		re_draw(fdf);
-	}
+	do_inc_z(fdf);
 }
 
 void	close_window(t_fdf *fdf)
@@ -47,45 +33,25 @@ void	close_window(t_fdf *fdf)
 		mlx_close_window(fdf->mlx);
 }
 
-void	do_rotation_x(t_fdf *fdf)
+void	select_viewpoint(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_I))
 	{
-		fdf->alpha -= 0.007;
-		re_draw(fdf);
+		fdf->viewpoint = 0;
+		zoom(fdf);
+		rotation(fdf);
+		viewpoint(fdf);
+		focus(fdf);
+		draw(fdf);
 	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_C))
 	{
-		fdf->alpha += 0.007;
-		re_draw(fdf);
-	}
-}
-
-void	do_rotation_y(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_D))
-	{
-		fdf->beta += 0.007;
-		re_draw(fdf);
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_A))
-	{
-		fdf->beta -= 0.007;
-		re_draw(fdf);
-	}
-}
-
-void	do_rotation_z(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Q))
-	{
-		fdf->gamma += 0.007;
-		re_draw(fdf);
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_E))
-	{
-		fdf->gamma -= 0.007;
-		re_draw(fdf);
+		fdf->viewpoint = 1;
+		zoom(fdf);
+		rotation(fdf);
+		viewpoint(fdf);
+		focus(fdf);
+		draw(fdf);
 	}
 }
 
@@ -115,7 +81,7 @@ void	do_translation(t_fdf *fdf)
 
 void	do_zoom(t_fdf *fdf)
 {
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_P))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_ADD))
 	{
 		fdf->zoom += 1;
 		zoom(fdf);
@@ -124,7 +90,7 @@ void	do_zoom(t_fdf *fdf)
 		focus(fdf);
 		draw(fdf);
 	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_M))
+	if (mlx_is_key_down(fdf->mlx, MLX_KEY_KP_SUBTRACT))
 	{
 		if (fdf->zoom > 0)
 		{
@@ -135,19 +101,5 @@ void	do_zoom(t_fdf *fdf)
 			focus(fdf);
 			draw(fdf);
 		}
-	}
-}
-
-void	do_inc_z(t_fdf *fdf)
-{
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_Z))
-	{
-		inc_z(fdf, "ADD");
-		re_draw(fdf);
-	}
-	if (mlx_is_key_down(fdf->mlx, MLX_KEY_X))
-	{
-		inc_z(fdf, "SUBSTRACT");
-		re_draw(fdf);
 	}
 }

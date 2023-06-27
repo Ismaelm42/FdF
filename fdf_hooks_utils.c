@@ -6,11 +6,20 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:06:00 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/17 12:07:51 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:10:12 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	re_draw(t_fdf *fdf)
+{
+	zoom(fdf);
+	rotation(fdf);
+	viewpoint(fdf);
+	focus(fdf);
+	draw(fdf);
+}
 
 void	translate(t_fdf *fdf, char *buffer)
 {	
@@ -50,23 +59,12 @@ void	inc_z(t_fdf *fdf, char *buffer)
 		{
 			if (ft_strnstr(buffer, "ADD", 3) != NULL)
 				if (fdf->map->points[y][x].z != 0)
-					if (fdf->map->points[y][x].z + 1 != 0)
 						fdf->map->points[y][x].z += 1;
 			if (ft_strnstr(buffer, "SUBSTRACT", 9) != NULL)
 				if (fdf->map->points[y][x].z != 0)
-					if (fdf->map->points[y][x].z - 1 != 0)
 						fdf->map->points[y][x].z -= 1;
 			x++;
 		}
 		y++;
 	}
-}
-
-void	re_draw(t_fdf *fdf)
-{
-	zoom(fdf);
-	rotation(fdf);
-	viewpoint(fdf);
-	focus(fdf);
-	draw(fdf);
 }

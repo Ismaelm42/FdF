@@ -6,16 +6,11 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:31:09 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/17 12:07:43 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:40:01 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	ft_leaks(void)
-{
-	system ("leaks -q fdf");
-}
 
 void	error(char *err)
 {
@@ -56,4 +51,16 @@ void	matrix_free(t_fdf *fdf)
 	free(fdf->map->points);
 	free(fdf->map);
 	free(fdf);
+}
+
+void	set_array(int *array, int nbr, int length)
+{
+	int	i;
+
+	i = 0;
+	while (i < length)
+	{
+		array[i] = nbr;
+		i++;
+	}
 }

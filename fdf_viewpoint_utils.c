@@ -6,7 +6,7 @@
 /*   By: imoro-sa <imoro-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:05:18 by imoro-sa          #+#    #+#             */
-/*   Updated: 2023/05/17 12:07:41 by imoro-sa         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:40:23 by imoro-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_min_and_max(t_fdf *fdf)
 
 	y = 0;
 	fdf->min_and_max = (int *)malloc(sizeof(int) * 4);
-	ft_memset(fdf->min_and_max, 0, 4);
+	set_array(fdf->min_and_max, 0, 4);
 	while (y < fdf->map->height)
 	{
 		x = 0;
@@ -57,25 +57,4 @@ void	rotate_z(t_point *point, t_fdf *fdf)
 {
 	point->sx = point->sx * cos(fdf->gamma) - point->sy * sin(fdf->gamma);
 	point->sy = point->sx * sin(fdf->gamma) + point->sy * cos(fdf->gamma);
-}
-
-void	isometric(t_point *point)
-{
-	int	x;
-	int	y;
-
-	x = point->sx;
-	y = point->sy;
-	point->sx = (x - y) * cos(0.52);
-	point->sy = (x + y) * sin(0.52) - point->sz;
-}
-void	cavalier(t_point *point)
-{
-	int	x;
-	int	y;
-
-	x = point->sx;
-	y = point->sy;
-	point->sx = x + (point->sz * cos(0.52));
-	point->sy = y + (point->sz * sin(0.52));
 }
